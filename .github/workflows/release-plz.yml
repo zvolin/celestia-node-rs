@@ -155,3 +155,20 @@ jobs:
           # publish lumina-node
           cd node-wasm/js
           npm publish --access public
+
+  release-uniffi-ios:
+    name: Release-plz
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_PLZ_TOKEN }}
+
+      - name: Setup toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: aarch64-apple-ios,aarch64-apple-ios-sim
+
+      - name:
