@@ -5,7 +5,7 @@ set -euxo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
 so_ext="so"
-if [ "$OSTYPE" == "Darwin" ]; then
+if [ "$(uname)" == "Darwin" ]; then
   so_ext="dylib"
 fi
 
