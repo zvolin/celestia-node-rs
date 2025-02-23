@@ -55,5 +55,5 @@ jobs:
         run: ./node-uniffi/build-android.sh
 
       - run: ls -lah ./node-uniffi
-      - run: ls -lah ./node-uniffi/app
+      - run: tree -lah ./node-uniffi/app
 

@@ -4,6 +4,11 @@ set -euxo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
+so_ext="so"
+if [ "$OSTYPE" == "Darwin" ]; then
+  so_ext="dylib"
+fi
+
 cargo build -p lumina-node-uniffi
 
 cargo ndk \
@@ -17,6 +22,6 @@ cargo ndk \
 
 cargo run --bin uniffi-bindgen \
   generate \
-  --library ../target/debug/liblumina_node_uniffi.dylib \
+  --library ../target/debug/liblumina_node_uniffi.$so_ext \
   --language kotlin \
   --out-dir ./app/src/main/java/tech/forgen/lumina_node_uniffi/rust
